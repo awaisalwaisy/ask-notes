@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Plus } from "lucide-vue-next";
 import { UserButton } from "vue-clerk";
+import { fnNoteDialog } from "./fn-note";
+const { toggle } = fnNoteDialog();
 
 // computed
 const userAvatarStyle = computed(() => {
@@ -18,13 +20,15 @@ const userAvatarStyle = computed(() => {
         <NuxtImg src="/logo.svg" alt="FlowBrain logo" width="40" height="40" />
         <span class="font-bold">AskNotes</span>
       </NuxtLink>
+
       <div class="flex items-center gap-3">
         <UserButton afterSignOutUrl="/" :appearance="userAvatarStyle" />
         <!-- <ThemeToggleButton /> -->
-        <Button>
+        <Button @click="toggle">
           <Plus :size="20" class="mr-2" />
           Add Note
         </Button>
+
         <AskChatBtn />
       </div>
     </div>
